@@ -136,48 +136,17 @@
 /* resume builder */
 
 
-
 @media print {
-  /* Hide everything by default */
   body * {
     visibility: hidden !important;
-    height: 0 !important;
-    overflow: hidden !important;
-    margin: 0 !important;
-    padding: 0 !important;
   }
-
-  /* Show only the printable area */
-  #printable-area,
-  #printable-area * {
+  #printable-area, #printable-area * {
     visibility: visible !important;
-    height: auto !important;
-    overflow: visible !important;
   }
-
   #printable-area {
-    position: absolute !important;
+    position: absolute;
     left: 0;
     top: 0;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    z-index: 9999;
-    background: white;
-  }
-
-  /* Hide buttons or other non-print elements */
-  .exclude-print {
-    display: none !important;
-  }
-
-  /* Remove padding */
-  .rm-padding-print {
-    padding: 0 !important;
-  }
-
-  @page {
-    size: A4;
-    margin: 10mm;
+    width: 100vw;
   }
 }

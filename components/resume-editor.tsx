@@ -11,18 +11,15 @@ import { ExperienceSection } from "@/components/sections/experience-section"
 import { EducationSkillsSection } from "@/components/sections/education-skills-section"
 import { Download, Save, Loader2 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
-import dynamic from "next/dynamic"
-
+import Print from "@/components/WinPrint"
 interface ResumeEditorProps {
   resumeData: any
   onDataChange: (data: any) => void
   template?: string
 }
-// const Print = dynamic(() => import("@/components/WinPrint"), { ssr: false });
 
 export function ResumeEditor({ resumeData, onDataChange, template = "classic" }: ResumeEditorProps) {
   const [activeTab, setActiveTab] = useState("basic")
-  const [isDownloading, setIsDownloading] = useState(false)
   const [isSaving, setIsSaving] = useState(false)
   const { toast } = useToast()
 
@@ -87,7 +84,7 @@ export function ResumeEditor({ resumeData, onDataChange, template = "classic" }:
             {isDownloading ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Download className="h-4 w-4 mr-2" />}
             Download PDF
           </Button> */}
-          {/* <Print /> */}
+          <Print />
         </div>
       </div>
 
