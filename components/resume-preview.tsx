@@ -71,7 +71,7 @@ export function ResumePreview({ resumeData, template = "classic" }: ResumePrevie
       default: // classic - Updated to match dark header design from screenshot
         return {
           card: "bg-white shadow-lg",
-          header: "bg-slate-700 text-white p-6 rounded-t-lg -m-8 mb-6 mx-[-2rem]",
+          header: "bg-slate-700 text-white p-6 w-full mb-6",
           name: "text-white",
           position: "text-gray-200",
           sectionTitle: "text-gray-900 border-b border-gray-300 uppercase tracking-wide text-sm font-bold",

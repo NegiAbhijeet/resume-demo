@@ -90,9 +90,8 @@ export function ResumeEditor({ resumeData, onDataChange, template = "classic" }:
 
       <Card className="p-6">
         <Tabs value={activeTab} onValueChange={setActiveTab}>
-          <TabsList className="grid w-full grid-cols-5">
+          <TabsList className="grid w-full grid-cols-4 border border-gray-300">
             <TabsTrigger value="basic">Basic Info</TabsTrigger>
-            <TabsTrigger value="profile">Profile</TabsTrigger>
             <TabsTrigger value="projects">Projects</TabsTrigger>
             <TabsTrigger value="experience">Experience</TabsTrigger>
             <TabsTrigger value="education">Education & Skills</TabsTrigger>
@@ -105,13 +104,6 @@ export function ResumeEditor({ resumeData, onDataChange, template = "classic" }:
                 socialData={resumeData?.social || []}
                 onPersonalChange={handlePersonalChange}
                 onSocialChange={handleSocialChange}
-              />
-            </TabsContent>
-
-            <TabsContent value="profile">
-              <SummarySection
-                data={resumeData?.summary || ""}
-                onChange={(data) => handleSectionUpdate("summary", data)}
               />
             </TabsContent>
 

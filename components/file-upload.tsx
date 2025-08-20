@@ -17,61 +17,87 @@ export function FileUpload({ onUpload }: FileUploadProps) {
 
   const onDrop = useCallback(
     async (acceptedFiles: File[]) => {
-      const file = acceptedFiles[0]
-      if (!file) return
+      const file = acceptedFiles[0];
+      if (!file) return;
 
-      setIsUploading(true)
-      setUploadError(null)
+      // Validate file type
+      const allowedTypes = [
+        "application/pdf",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ];
+      if (!allowedTypes.includes(file.type)) {
+        // toast.error("Please upload a PDF or DOCX file.");
+        return;
+      }
+
+      // Validate file size (max 5MB)
+      if (file.size > 5 * 1024 * 1024) {
+        // toast.error("Please upload a file smaller than 5MB.");
+        return;
+      }
+
+      setIsUploading(true);
+      setUploadError(null);
 
       try {
-        // Simulate file processing and data extraction
-        await new Promise((resolve) => setTimeout(resolve, 2000))
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("uid", "hirMjzjfRiW0DGzPal4lzOCN2wg2");
 
-        // Mock extracted resume data
-        const mockData = {
+        const response = await fetch(`https://python.aiinterviewagents.com/upload-resume/`, {
+          method: "POST",
+          body: formData,
+        });
+
+        if (!response.ok) throw new Error("Failed to upload resume.");
+
+        const data = await response.json();
+        const resumeFields = data?.fields;
+
+        // Populate onUpload with API response
+        onUpload({
           personal: {
-            fullName: "John Doe",
-            position: "Software Engineer",
-            email: "john.doe@email.com",
-            phone: "+1 (555) 123-4567",
-            address: "San Francisco, CA",
+            fullName: resumeFields?.full_name,
+            position: resumeFields?.current_role,
+            email: resumeFields?.email,
+            phone: resumeFields?.phone,
+            address: resumeFields?.location,
           },
-          summary: "Experienced software engineer with 5+ years of experience in full-stack development.",
-          experience: [
-            {
-              id: "1",
-              company: "Tech Corp",
-              position: "Senior Software Engineer",
-              startDate: "2021-01",
-              endDate: "Present",
-              description: "Led development of web applications using React and Node.js.",
-            },
-          ],
-          education: [
-            {
-              id: "1",
-              institution: "University of Technology",
-              degree: "Bachelor of Computer Science",
-              startDate: "2016-09",
-              endDate: "2020-05",
-            },
-          ],
-          skills: ["JavaScript", "React", "Node.js", "Python", "SQL"],
-          social: [
-            { platform: "LinkedIn", url: "https://linkedin.com/in/johndoe" },
-            { platform: "GitHub", url: "https://github.com/johndoe" },
-          ],
-        }
+          summary: resumeFields?.summary,
+          experience: resumeFields?.work_experience?.length
+            ? resumeFields.work_experience.map((job) => ({
+              id: job?.id,
+              company: job?.company_name,
+              position: job?.job_title,
+              startDate: job?.start_date,
+              endDate: job?.end_date,
+              description: job?.description,
+            }))
+            : [],
+          education: resumeFields?.education?.length
+            ? resumeFields.education.map((edu) => ({
+              id: edu?.id,
+              institution: edu?.["university/institute name"],
+              degree: edu?.degree,
+              startDate: edu?.start_date,
+              endDate: edu?.end_date,
+            }))
+            : [],
+          skills: resumeFields?.skills || [],
+          social: resumeFields?.social || [],
+        });
 
-        onUpload(mockData)
       } catch (error) {
-        setUploadError("Failed to process resume. Please try again.")
+        console.error(error);
+        setUploadError("Failed to process resume. Please try again.");
+        // toast.error("There was an error uploading your resume. Please try again.");
       } finally {
-        setIsUploading(false)
+        setIsUploading(false);
       }
     },
-    [onUpload],
-  )
+    [onUpload]
+  );
+
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     onDrop,
