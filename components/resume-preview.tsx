@@ -86,7 +86,7 @@ export function ResumePreview({ resumeData, template = "classic" }: ResumePrevie
 
   if (template === "classic") {
     return (
-      <div className="sticky top-8" id="printable-area">
+      <div className="sticky top-8 printable-area">
         <Card className={`overflow-hidden ${styles.card}`}>
           {/* Dark Header Section */}
           <div className={styles.header}>
@@ -233,7 +233,7 @@ export function ResumePreview({ resumeData, template = "classic" }: ResumePrevie
 
   if (template === "modern") {
     return (
-      <div className="sticky top-8">
+      <div className="sticky top-8 printable-area">
         <Card className={`overflow-hidden ${styles.card}`}>
           <div className="p-8">
             {/* Header - Name and Title */}
@@ -376,7 +376,7 @@ export function ResumePreview({ resumeData, template = "classic" }: ResumePrevie
 
   if (template === "creative") {
     return (
-      <div className="sticky top-8">
+      <div className="sticky top-8 printable-area">
         <Card className={`p-8 ${styles.card}`}>
           <div className="space-y-6">
             {/* Header - Name on left, contact on right */}
@@ -517,7 +517,7 @@ export function ResumePreview({ resumeData, template = "classic" }: ResumePrevie
 
   if (template === "minimal") {
     return (
-      <div className="sticky top-8">
+      <div className="sticky top-8 printable-area">
         <Card className={`p-8 ${styles.card}`}>
           <div className="space-y-6">
             {/* Header - Name and Title */}
