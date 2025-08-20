@@ -18,7 +18,7 @@ interface ResumeEditorProps {
   onDataChange: (data: any) => void
   template?: string
 }
-const Print = dynamic(() => import("@/components/WinPrint"), { ssr: false });
+// const Print = dynamic(() => import("@/components/WinPrint"), { ssr: false });
 
 export function ResumeEditor({ resumeData, onDataChange, template = "classic" }: ResumeEditorProps) {
   const [activeTab, setActiveTab] = useState("basic")
@@ -87,7 +87,7 @@ export function ResumeEditor({ resumeData, onDataChange, template = "classic" }:
             {isDownloading ? <Loader2 className="h-4 w-4 mr-2 animate-spin" /> : <Download className="h-4 w-4 mr-2" />}
             Download PDF
           </Button> */}
-          <Print />
+          {/* <Print /> */}
         </div>
       </div>
 
