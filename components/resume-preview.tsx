@@ -19,7 +19,7 @@ export function ResumePreview({ resumeData, template = "classic" }: ResumePrevie
     )
   }
 
-  const { personal, projects, experience, education, skills, social } = resumeData
+  const { personal, projects, experience, education, skills, social, summary } = resumeData
 
   const getSocialIcon = (platform: string) => {
     switch (platform.toLowerCase()) {
@@ -92,7 +92,7 @@ export function ResumePreview({ resumeData, template = "classic" }: ResumePrevie
           <div className={styles.header}>
             <h1 className={`text-3xl font-bold mb-2 ${styles.name}`}>{personal?.fullName || "Dheeraj Singh"}</h1>
             <p className={`text-lg mb-3 ${styles.position}`}>{personal?.position || "Professional Title"}</p>
-            <p className="text-gray-300 leading-relaxed">Short and engaging pitch about yourself.</p>
+            <p className="text-gray-300 leading-relaxed">{summary || ""}</p>
           </div>
 
           <div className="p-8 pt-0">
@@ -241,7 +241,7 @@ export function ResumePreview({ resumeData, template = "classic" }: ResumePrevie
               <h1 className={`text-3xl font-bold mb-2 ${styles.name}`}>{personal?.fullName || "Dheeraj Singh"}</h1>
               <p className={`text-lg mb-3 ${styles.position}`}>{personal?.position || "Professional Title"}</p>
               <p className="text-gray-700 leading-relaxed max-w-2xl mx-auto">
-                Short and engaging pitch about yourself.
+                {summary || ""}
               </p>
             </div>
 
@@ -384,7 +384,7 @@ export function ResumePreview({ resumeData, template = "classic" }: ResumePrevie
               <div className="space-y-2">
                 <h1 className={`text-3xl font-bold ${styles.name}`}>{personal?.fullName || "Dheeraj Singh"}</h1>
                 <p className={`text-lg ${styles.position}`}>{personal?.position || "Professional Title"}</p>
-                <p className="text-gray-700 leading-relaxed max-w-md">Short and engaging pitch about yourself.</p>
+                <p className="text-gray-700 leading-relaxed max-w-md">{summary || ""}</p>
               </div>
               <div className="text-right space-y-1 text-sm">
                 <div className="flex items-center justify-end gap-2">
@@ -525,7 +525,7 @@ export function ResumePreview({ resumeData, template = "classic" }: ResumePrevie
               <div className="space-y-2">
                 <h1 className={`text-3xl font-bold ${styles.name}`}>{personal?.fullName || "Dheeraj Singh"}</h1>
                 <p className={`text-lg ${styles.position}`}>{personal?.position || "Professional Title"}</p>
-                <p className="text-gray-700 leading-relaxed max-w-md">Short and engaging pitch about yourself.</p>
+                <p className="text-gray-700 leading-relaxed max-w-md">{summary || ""}</p>
               </div>
               <div className="text-right space-y-1 text-sm">
                 <div className="flex items-center justify-end gap-2">

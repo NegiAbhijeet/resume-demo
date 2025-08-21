@@ -10,30 +10,23 @@ import { Plus, Trash2 } from "lucide-react"
 interface BasicInfoSectionProps {
   personalData: any
   socialData: any[]
-  profileData: any
+  summary: any
   onPersonalChange: (data: any) => void
   onSocialChange: (data: any[]) => void
-  onProfileChange: (data: any) => void
+  handleSummaryChange: (data: any) => void
 }
 
 export function BasicInfoSection({
   personalData,
   socialData,
-  profileData,
+  summary,
   onPersonalChange,
   onSocialChange,
-  onProfileChange,
+  handleSummaryChange,
 }: BasicInfoSectionProps) {
   const handlePersonalChange = (field: string, value: string) => {
     onPersonalChange({
       ...personalData,
-      [field]: value,
-    })
-  }
-
-  const handleProfileChange = (field: string, value: string) => {
-    onProfileChange({
-      ...profileData,
       [field]: value,
     })
   }
@@ -125,8 +118,8 @@ export function BasicInfoSection({
             <Label htmlFor="summary">Summary</Label>
             <Textarea
               id="summary"
-              value={profileData?.summary || ""}
-              onChange={(e) => handleProfileChange("summary", e.target.value)}
+              value={summary || ""}
+              onChange={(e) => handleSummaryChange(e.target.value)}
               placeholder="Write a compelling professional summary that highlights your key skills, experience, and career objectives..."
               rows={4}
               className="resize-none"

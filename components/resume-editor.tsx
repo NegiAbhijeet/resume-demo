@@ -5,11 +5,10 @@ import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { BasicInfoSection } from "@/components/sections/basic-info-section"
-import { SummarySection } from "@/components/sections/summary-section"
 import { ProjectsSection } from "@/components/sections/projects-section"
 import { ExperienceSection } from "@/components/sections/experience-section"
 import { EducationSkillsSection } from "@/components/sections/education-skills-section"
-import { Download, Save, Loader2 } from "lucide-react"
+import { Save, Loader2 } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 interface ResumeEditorProps {
   resumeData: any
@@ -35,6 +34,9 @@ export function ResumeEditor({ resumeData, onDataChange, template = "classic" }:
 
   const handleSocialChange = (data: any) => {
     handleSectionUpdate("social", data)
+  }
+  const handleSummaryChange = (data: any) => {
+    handleSectionUpdate("summary", data)
   }
 
   const handleEducationChange = (data: any) => {
@@ -105,10 +107,12 @@ export function ResumeEditor({ resumeData, onDataChange, template = "classic" }:
           <div className="mt-6">
             <TabsContent value="basic">
               <BasicInfoSection
+                summary={resumeData?.summary || ""}
                 personalData={resumeData?.personal || {}}
                 socialData={resumeData?.social || []}
                 onPersonalChange={handlePersonalChange}
                 onSocialChange={handleSocialChange}
+                handleSummaryChange={handleSummaryChange}
               />
             </TabsContent>
 
