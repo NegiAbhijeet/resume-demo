@@ -96,7 +96,7 @@ export function TemplateSelector({ onTemplateSelect }: TemplateSelectorProps) {
 
       {/* Image Modal */}
       <Dialog open={!!openImage} onOpenChange={() => setOpenImage(null)}>
-        <DialogContent className="max-w-4xl p-0 overflow-hidden">
+        <DialogContent className="max-w-4xl py-6 max-h-[95vh] overflow-scroll">
           {openImage && (
             <Image
               src={openImage}
