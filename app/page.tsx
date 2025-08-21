@@ -5,6 +5,7 @@ import { FileUpload } from "@/components/file-upload"
 import { ResumeEditor } from "@/components/resume-editor"
 import { ResumePreview } from "@/components/resume-preview"
 import { TemplateSelector } from "@/components/template-selector"
+import { Button } from "@/components/ui/button"
 
 const defaultResumeData = {
   personal: {
@@ -89,12 +90,14 @@ export default function HomePage() {
               <h1 className="text-xl font-bold text-foreground">Resume Builder</h1>
             </div>
             {(currentStep === "upload" || currentStep === "edit") && (
-              <button
+
+              <Button
+                // variant={"outline"}
+                aria-label="Download "
                 onClick={handleStartOver}
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
-                Start Over
-              </button>
+                Upload Resume
+              </Button>
             )}
           </div>
         </div>
